@@ -13,7 +13,6 @@ body{
     background: -moz-linear-gradient(145deg, rgba(131,234,241,1) 50%, rgba(99,164,255,1) 100%);
     background: -webkit-linear-gradient(145deg, rgba(131,234,241,1) 50%, rgba(99,164,255,1) 100%);
     background: linear-gradient(145deg, rgba(131,234,241,1) 50%, rgba(99,164,255,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#83eaf1",endColorstr="#63a4ff",GradientType=1);
 }
 
 #calculator{
@@ -21,7 +20,15 @@ body{
     margin: 4rem auto;
     width: 28%;
     border-radius: 25px;
+    padding-top: 1px;
 }
 
-
+#screen{
+    width: 100%;
+    height: 45%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    margin: 0 auto;
+    background-color: white;
+}
 
