@@ -1,5 +1,5 @@
 const operations = document.getElementById('list-of-operations');
-let userInput = document.getElementById('number-selected');
+let numberSelected = document.getElementById('number-selected');
 const buttons = document.querySelectorAll('#buttons div');
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
         button.addEventListener('click', ()=>{
             switch (button.textContent){
                 case("AC"):
-                    userInput.innerText = '0';
+                    numberSelected.innerText = '0';
                     break;
 
                 case("+/-"):
-                    if (userInput.innerText !== '0' && parseInt(userInput.innerText) > 0){
-                        userInput.innerText = `-${userInput.innerText}`
+                    if (numberSelected.innerText !== '0' && parseInt(numberSelected.innerText) > 0){
+                        numberSelected.innerText = `-${numberSelected.innerText}`
                         break;
                     }
-                    if (userInput.innerText !== '0' && parseInt(userInput.innerText) < 0){
-                        userInput.innerText = `${userInput.innerText.slice(1)}`
+                    if (numberSelected.innerText !== '0' && parseInt(numberSelected.innerText) < 0){
+                        numberSelected.innerText = `${numberSelected.innerText.slice(1)}`
                         break;
                     }
                     break;
@@ -48,12 +48,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 default:
-                    if (userInput.innerText==='0' && userInput.innerText.length === 1){
-                        userInput.innerText = button.textContent;
+                    if (numberSelected.innerText==='0' && numberSelected.innerText.length === 1){
+                        numberSelected.innerText = button.textContent;
                     }
 
                     else {
-                        userInput.innerText = `${userInput.innerText}${button.textContent}`;
+                        numberSelected.innerText = `${numberSelected.innerText}${button.textContent}`;
                     }
             }
         })
