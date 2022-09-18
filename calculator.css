@@ -32,6 +32,33 @@ body{
     border-top-right-radius: 25px;
     margin: 0 auto;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#operations{
+    background-color: cyan;
+    display: flex;
+    justify-content: flex-end;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 4%;
+}
+
+#list-of-operations{
+    background-color: red;
+}
+
+#input{
+    background-color: burlywood;
+    display: flex;
+    justify-content: flex-end;
+    padding: 4%;
+}
+
+#number-selected{
+    text-align: right;
 }
 
 #buttons{
