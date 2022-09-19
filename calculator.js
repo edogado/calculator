@@ -47,6 +47,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     console.log('equals');
                     break;
 
+                case '.':
+                    console.log('.');
+                    break;
+
                 default:
                     if (numberSelected.innerText==='0' && numberSelected.innerText.length === 1){
                         numberSelected.innerText = button.textContent;
