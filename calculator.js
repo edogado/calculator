@@ -14,17 +14,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case("+/-"):
-                    if (numberSelected.innerText !== '0' && parseInt(numberSelected.innerText) > 0){
+                    if (numberSelected.innerText !== '0' && parseFloat(numberSelected.innerText) > 0){
                         numberSelected.innerText = `-${numberSelected.innerText}`
                         break;
                     }
-                    if (numberSelected.innerText !== '0' && parseInt(numberSelected.innerText) < 0){
+                    if (numberSelected.innerText !== '0' && parseFloat(numberSelected.innerText) < 0){
                         numberSelected.innerText = `${numberSelected.innerText.slice(1)}`
                         break;
                     }
                     break;
 
                 case("%"):
+                    numberSelected.innerText = `${parseFloat(numberSelected.innerText)/100}`;
                     break;
 
                 case("/"):
