@@ -2,7 +2,18 @@ const operations = document.getElementById('list-of-operations');
 let numberSelected = document.getElementById('number-selected');
 const buttons = document.querySelectorAll('#buttons div');
 
+const doOperation = {
+    '+': (x , y) => {return x+ parseInt(y)},
+    '-': (x , y) => {return x-y},
+    'x': (x , y) => {return x*y},
+    '/': (x , y) => {return y==='0'? 'Cannot divide by 0': x/y;}
+}
+
+
 document.addEventListener('DOMContentLoaded', ()=> {
+
+    let operation;
+    let n1;
 
     console.log(operations.children);
 
@@ -29,23 +40,32 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case("/"):
-                    console.log("division");
+                    n1=numberSelected.innerText;
+                    operation = '/'
+                    numberSelected.innerText = '';
                     break;
 
                 case ("x"):
-                    console.log('times');
+                    n1=numberSelected.innerText;
+                    operation = 'x'
+                    numberSelected.innerText = '';
                     break;
 
                 case "-":
-                    console.log('minus');
+                    n1=numberSelected.innerText;
+                    operation = '-'
+                    numberSelected.innerText = '';
                     break;
 
                 case "+":
-                    console.log('plus');
+                    n1=parseInt(numberSelected.innerText);
+                    operation = '+'
+                    numberSelected.innerText = '';
                     break;
 
                 case '=':
-                    console.log('equals');
+                    numberSelected.innerText = doOperation[operation](n1, numberSelected.innerText);
+                    n1 = numberSelected.innerText;
                     break;
 
                 case '.':
