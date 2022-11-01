@@ -69,7 +69,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case '.':
-                    console.log('.');
+                    if (numberSelected.innerText.includes('.')){
+                        break;
+                    }
+                    numberSelected.innerText = numberSelected.innerText+".";
                     break;
 
                 default:
