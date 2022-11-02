@@ -50,7 +50,7 @@ body{
     background-color: red;
 }
 
-#input{
+#currentOperation{
     background-color: burlywood;
     display: flex;
     justify-content: flex-end;
