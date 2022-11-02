@@ -1,4 +1,3 @@
-const operations = document.getElementById('list-of-operations');
 let numberSelected = document.getElementById('number-selected');
 const buttons = document.querySelectorAll('#buttons div');
 
