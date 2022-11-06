@@ -2,7 +2,7 @@ let numberSelected = document.getElementById('number-selected');
 const buttons = document.querySelectorAll('#buttons div');
 
 const doOperation = {
-    '+': (x , y) => {return x+ parseFloat(y)},
+    '+': (x , y) => {return parseFloat(x)+y},
     '-': (x , y) => {return x-y},
     'x': (x , y) => {return x*y},
     '/': (x , y) => {return y==='0'? 'Cannot divide by 0': x/y;}
@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
             switch (button.textContent){
                 case("AC"):
                     numberSelected.innerText = '0';
+                    operation = '';
+                    n1 = '';
                     break;
 
                 case("+/-"):
@@ -42,29 +44,31 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 case("/"):
                     n1=numberSelected.innerText;
                     operation = '/'
-                    numberSelected.innerText = '';
+                    appendCharacter(button.textContent);
                     break;
 
                 case ("x"):
                     n1=numberSelected.innerText;
                     operation = 'x'
-                    numberSelected.innerText = '';
+                    appendCharacter(button.textContent);
                     break;
 
                 case "-":
                     n1=numberSelected.innerText;
                     operation = '-'
-                    numberSelected.innerText = '';
+                    appendCharacter(button.textContent);
                     break;
 
                 case "+":
-                    n1=parseFloat(numberSelected.innerText);
+                    n1=numberSelected.innerText;
                     operation = '+'
-                    numberSelected.innerText = '';
+                    appendCharacter(button.textContent);
                     break;
 
                 case '=':
-                    numberSelected.innerText = doOperation[operation](n1, numberSelected.innerText);
+                    let n2 = parseFloat(numberSelected.innerText.substring(n1.length+1));
+                    numberSelected.innerText = doOperation[operation](n1, n2);
+                    console.log(n1, operation, n2);
                     break;
 
                 case '.':
@@ -75,8 +79,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 default:
+                    if (numberSelected.innerText.includes('0') && numberSelected.innerText.length===1){
+                        numberSelected.innerText = '';
+                    }
                     appendCharacter(button.textContent);
             }
+            console.log(numberSelected);
         })
     })
 });
