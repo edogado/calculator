@@ -1,3 +1,4 @@
+let previousOperations = document.getElementById('list-of-operations');
 let numberSelected = document.getElementById('number-selected');
 const buttons = document.querySelectorAll('#buttons div');
 
@@ -29,15 +30,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case("+/-"):
+                    //convert positive numbers to negative
                     if (numberSelected.innerText !== '0' && parseFloat(numberSelected.innerText) > 0){
                         numberSelected.innerText = `-${numberSelected.innerText}`;
                         break;
                     }
-                    if (numberSelected.innerText !== '0' && parseFloat(numberSelected.innerText) < 0){
+                    //convert negative numbers to positive
+                    else{
                         numberSelected.innerText = `${numberSelected.innerText.slice(1)}`;
                         break;
                     }
-                    break;
 
                 case("%"):
                     numberSelected.innerText = `${parseFloat(numberSelected.innerText)/100}`;
@@ -56,6 +58,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case "-":
+                    //in case user wants to start with a negative number
+                    if (numberSelected.innerText.length === 1 && numberSelected.innerText.includes('0')){
+                        numberSelected.innerText = '';//we remove the 0
+                        appendCharacter(button.textContent);//and place the - followed by the numbers
+                        break;
+                    }
                     n1=numberSelected.innerText;
                     operation = '-'
                     appendCharacter(button.textContent);
