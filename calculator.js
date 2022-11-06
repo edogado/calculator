@@ -6,7 +6,7 @@ const doOperation = {
     '+': (x , y) => {return parseFloat(x)+y},
     '-': (x , y) => {return x-y},
     'x': (x , y) => {return x*y},
-    '/': (x , y) => {return y==='0'? 'Cannot divide by 0': x/y;}
+    '/': (x , y) => {return y===0? 'Cannot divide by 0': x/y;}
 }
 
 const appendCharacter = (character) =>{
@@ -36,10 +36,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         break;
                     }
                     //convert negative numbers to positive
-                    else{
+                    if (numberSelected.innerText !== '0' && parseFloat(numberSelected.innerText) < 0){
                         numberSelected.innerText = `${numberSelected.innerText.slice(1)}`;
                         break;
                     }
+                    break;
 
                 case("%"):
                     numberSelected.innerText = `${parseFloat(numberSelected.innerText)/100}`;
