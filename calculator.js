@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     let operation;
     let n1;
+    let n2;
 
     buttons.forEach(button => {
         button.addEventListener('click', ()=>{
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     numberSelected.innerText = '0';
                     operation = '';
                     n1 = '';
+                    n2 = '';
                     break;
 
                 case("+/-"):
@@ -66,7 +68,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case '=':
-                    let n2 = parseFloat(numberSelected.innerText.substring(n1.length+1));
+                    n2 = parseFloat(numberSelected.innerText.substring(n1.length+1));
                     numberSelected.innerText = doOperation[operation](n1, n2);
                     console.log(n1, operation, n2);
                     break;
