@@ -48,6 +48,7 @@ body{
 
 #list-of-operations{
     background-color: red;
+    width: 100%;
 }
 
 #currentOperation{
@@ -55,6 +56,10 @@ body{
     display: flex;
     justify-content: flex-end;
     padding: 4%;
+}
+
+.number{
+    text-align: right;
 }
 
 #number-selected{
