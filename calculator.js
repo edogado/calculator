@@ -1,4 +1,5 @@
-let previousOperations = document.getElementById('list-of-operations');
+let history = [' ', '','', '', '', '', '', '', '' ,'', ''];
+let previousOperations = document.getElementsByClassName('number');
 let numberSelected = document.getElementById('number-selected');
 const buttons = document.querySelectorAll('#buttons div');
 
@@ -9,6 +10,22 @@ const doOperation = {
     '/': (x , y) => {return y===0? 'Cannot divide by 0': x/y;}
 }
 
+
+const updateHistory = (x, op, y, result) =>{
+    let lastOperation = `${x} ${op} ${y} = ${result}`;
+    console.log("history: ", history);
+    history.push(lastOperation);
+    history.shift();
+
+    console.log("history: ", history);
+    for (let i = 0; i < previousOperations.length; i++) {
+        previousOperations[i].innerText = history[i];
+    }
+    console.log(previousOperations);
+    console.log("history: ", history);
+}
+
+
 const appendCharacter = (character) =>{
     numberSelected.innerText = numberSelected.innerText + character;
 }
@@ -18,6 +35,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let operation;
     let n1;
     let n2;
+
+    //every time an operation is selected
+    const updateCalculator = (integer, op, character) =>{
+        n1=integer;//we save the first integer
+        operation = op;//record the operation to perform
+        appendCharacter(character);//update the screen
+    }
 
     buttons.forEach(button => {
         button.addEventListener('click', ()=>{
@@ -47,39 +71,32 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case("/"):
-                    n1=numberSelected.innerText;
-                    operation = '/'
-                    appendCharacter(button.textContent);
+                    updateCalculator(numberSelected.innerText, '/', button.textContent);
                     break;
 
                 case ("x"):
-                    n1=numberSelected.innerText;
-                    operation = 'x'
-                    appendCharacter(button.textContent);
+                    updateCalculator(numberSelected.innerText, 'x', button.textContent)
                     break;
 
                 case "-":
                     //in case user wants to start with a negative number
                     if (numberSelected.innerText.length === 1 && numberSelected.innerText.includes('0')){
-                        numberSelected.innerText = '';//we remove the 0
-                        appendCharacter(button.textContent);//and place the - followed by the numbers
+                        numberSelected.innerText = '';//we remove the initial 0
+                        appendCharacter(button.textContent);//and replace it by the '-' followed by the numbers
                         break;
                     }
-                    n1=numberSelected.innerText;
-                    operation = '-'
-                    appendCharacter(button.textContent);
+
+                    updateCalculator(numberSelected.innerText, '-', button.textContent)
                     break;
 
                 case "+":
-                    n1=numberSelected.innerText;
-                    operation = '+'
-                    appendCharacter(button.textContent);
+                    updateCalculator(numberSelected.innerText, '+', button.textContent)
                     break;
 
                 case '=':
                     n2 = parseFloat(numberSelected.innerText.substring(n1.length+1));
                     numberSelected.innerText = doOperation[operation](n1, n2);
-                    console.log(n1, operation, n2);
+                    updateHistory(n1, operation, n2, numberSelected.innerText);
                     break;
 
                 case '.':
@@ -95,7 +112,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     }
                     appendCharacter(button.textContent);
             }
-            console.log(numberSelected);
         })
     })
 });
