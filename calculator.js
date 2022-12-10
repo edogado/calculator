@@ -105,7 +105,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     if (numberSelected.innerText.includes('0') && numberSelected.innerText.length===1){
                         numberSelected.innerText = '';
                     }
-                    appendCharacter(button.textContent);
+                    if (numberSelected.innerText.length <= 33){
+                        appendCharacter(button.textContent);
+                    }
             }
         })
     })
