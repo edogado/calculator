@@ -9,7 +9,7 @@ let n2;//placeholder for the second integer
 //---------- Function updates the input screen every time a button is pressed ------------------------------------------
 const appendCharacter = (character) => userInput.innerText = userInput.innerText + character;
 
-//---------- Function updates the arithmetic and screen every time an operator is selected ------------------------
+//---------- Function updates the arithmetic and screen every time an operator is selected -----------------------------
 const updateArithmetic = (integer, operator) =>{
     n1=integer;
     operation = operator;
