@@ -10,10 +10,10 @@ let n2;//placeholder for the second integer
 const appendCharacter = (character) => userInput.innerText = userInput.innerText + character;
 
 //---------- Function updates the arithmetic and screen every time an operator is selected ------------------------
-const updateArithmetic = (integer, operator, character) =>{
+const updateArithmetic = (integer, operator) =>{
     n1=integer;
     operation = operator;
-    appendCharacter(character);//update the screen
+    appendCharacter(operator);//update the screen
 }
 
 //---------- Dictionary returns result of an operation depending on the operator ---------------------------------------
@@ -75,13 +75,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case("/"):
-                    updateArithmetic(userInput.innerText, '/', button.textContent);
+                    updateArithmetic(userInput.innerText, '/');
                     updateCurrentOperation(userInput.innerText);
                     userInput.innerText = '';
                     break;
 
                 case ("x"):
-                    updateArithmetic(userInput.innerText, 'x', button.textContent)
+                    updateArithmetic(userInput.innerText, 'x')
                     updateCurrentOperation(userInput.innerText);
                     userInput.innerText = '';
                     break;
@@ -95,13 +95,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         break;
                     }
 
-                    updateArithmetic(userInput.innerText, '-', button.textContent)
+                    updateArithmetic(userInput.innerText, '-')
                     updateCurrentOperation(userInput.innerText);
                     userInput.innerText = '';
                     break;
 
                 case "+":
-                    updateArithmetic(userInput.innerText, '+', button.textContent)
+                    updateArithmetic(userInput.innerText, '+')
                     updateCurrentOperation(userInput.innerText);
                     userInput.innerText = '';
                     break;
