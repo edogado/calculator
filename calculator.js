@@ -1,4 +1,4 @@
-let history = [' ', '','', '', '', '', '', '', '' ,'', ''];
+let history = ['', '', '', '', '', '', '', '', '' , '', ''];
 let previousOperations = document.getElementsByClassName('number');
 let numberSelected = document.getElementById('number-selected');
 const buttons = document.querySelectorAll('#buttons div');
@@ -13,16 +13,11 @@ const doOperation = {
 
 const updateHistory = (x, op, y, result) =>{
     let lastOperation = `${x} ${op} ${y} = ${result}`;
-    console.log("history: ", history);
     history.push(lastOperation);
-    history.shift();
-
-    console.log("history: ", history);
-    for (let i = 0; i < previousOperations.length; i++) {
-        previousOperations[i].innerText = history[i];
+    history.shift()
+    for (let i = 0; i <= 10; i++){
+        previousOperations[i].innerHTML = `${history[i]}<br>`;
     }
-    console.log(previousOperations);
-    console.log("history: ", history);
 }
 
 
