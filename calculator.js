@@ -10,8 +10,7 @@ const doOperation = {
     '/': (x , y) => {return y===0? 'Cannot divide by 0': x/y;}
 }
 
-
-const updateHistory = (x, op, y, result) =>{
+const updateOperationsHistory = (x, op, y, result) =>{
     let lastOperation = `${x} ${op} ${y} = ${result}`;
     history.push(lastOperation);
     history.shift()
@@ -89,9 +88,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case '=':
-                    n2 = parseFloat(numberSelected.innerText.substring(n1.length+1));
+                    n2 = parseFloat(numberSelected.innerText);
                     numberSelected.innerText = doOperation[operation](n1, n2);
-                    updateHistory(n1, operation, n2, numberSelected.innerText);
+                    updateOperationsHistory(n1, operation, n2, numberSelected.innerText);
                     break;
 
                 case '.':
