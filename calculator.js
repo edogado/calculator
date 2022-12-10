@@ -13,7 +13,7 @@ const appendCharacter = (character) => userInput.innerText = userInput.innerText
 const updateArithmetic = (integer, operator) =>{
     n1=integer;
     operation = operator;
-    appendCharacter(operator);//update the screen
+    appendCharacter(" " + operator);//update the screen
 }
 
 //---------- Dictionary returns result of an operation depending on the operator ---------------------------------------
@@ -41,8 +41,10 @@ const updateListOfPreviousOperations = (x, op, y, result) =>{
 }
 
 //---------- Function updates the screen -------------------------------------------------------------------------------
-const updateScreen =() => {
-
+const updateScreen =(operator) => {
+    updateArithmetic(userInput.innerText, operator);
+    updateInputSection(userInput.innerText);
+    userInput.innerText = '';
 };
 
 document.addEventListener('DOMContentLoaded', ()=> {
@@ -75,15 +77,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case("/"):
-                    updateArithmetic(userInput.innerText, '/');
-                    updateInputSection(userInput.innerText);
-                    userInput.innerText = '';
+                    updateScreen( '/');
                     break;
 
                 case ("x"):
-                    updateArithmetic(userInput.innerText, 'x')
-                    updateInputSection(userInput.innerText);
-                    userInput.innerText = '';
+                    updateScreen( 'x');
                     break;
 
                 case "-":
@@ -95,21 +93,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         break;
                     }
 
-                    updateArithmetic(userInput.innerText, '-')
-                    updateInputSection(userInput.innerText);
-                    userInput.innerText = '';
+                    //regular subtraction
+                    updateScreen('-');
                     break;
 
                 case "+":
-                    updateArithmetic(userInput.innerText, '+')
-                    updateInputSection(userInput.innerText);
-                    userInput.innerText = '';
+                    updateScreen('+')
                     break;
 
                 case '=':
                     n2 = parseFloat(userInput.innerText);
                     userInput.innerText = doOperation[operation](n1, n2);
                     updateListOfPreviousOperations(n1, operation, n2, userInput.innerText);
+                    operation = '';
+                    n2 = '';
                     break;
 
                 case '.':
