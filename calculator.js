@@ -16,9 +16,10 @@ const updateOperationsHistory = (x, op, y, result) =>{
     let lastOperation = `${x} ${op} ${y} = ${result}`;
     history.push(lastOperation);
     history.shift()
-    for (let i = 0; i <= 10; i++){
-        previousOperations[i].innerHTML = `${history[i]}<br>`;
+    for (let i = 0; i <= 9; i++){
+        previousOperations[i].innerHTML = `${history[i+1]}<br>`;
     }
+    previousOperations[10].innerHTML = '<br>';
 }
 
 const appendCharacter = (character) =>{
