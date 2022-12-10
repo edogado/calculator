@@ -42,10 +42,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         button.addEventListener('click', ()=>{
             switch (button.textContent){
                 case("AC"):
-                    if (n1 || operation){
-                        numberSelected.innerText = "";
-                        break;
-                    }
                     numberSelected.innerText = '0';
                     operation = '';
                     n1 = '';
@@ -71,10 +67,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 case("/"):
                     updateCalculator(numberSelected.innerText, '/', button.textContent);
+                    updateCurrentOperation(numberSelected.innerText);
+                    numberSelected.innerText = '';
                     break;
 
                 case ("x"):
                     updateCalculator(numberSelected.innerText, 'x', button.textContent)
+                    updateCurrentOperation(numberSelected.innerText);
+                    numberSelected.innerText = '';
                     break;
 
                 case "-":
@@ -84,12 +84,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         appendCharacter(button.textContent);//and replace it by the '-' followed by the numbers
                         break;
                     }
-
                     updateCalculator(numberSelected.innerText, '-', button.textContent)
+                    updateCurrentOperation(numberSelected.innerText);
+                    numberSelected.innerText = '';
                     break;
 
                 case "+":
                     updateCalculator(numberSelected.innerText, '+', button.textContent)
+                    updateCurrentOperation(numberSelected.innerText);
+                    numberSelected.innerText = '';
                     break;
 
                 case '=':
