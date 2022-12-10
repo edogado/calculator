@@ -1,5 +1,5 @@
 let history = ['', '', '', '', '', '', '', '', '' , '', ''];
-let previousOperations = document.getElementsByClassName('number');
+let listOfPreviousOperations = document.getElementsByClassName('number');
 let userInput = document.getElementById('number-selected');//numbers clicked by user
 const buttons = document.querySelectorAll('#buttons div');
 let operation;// needed to keep track of what operation we have to perform
@@ -24,20 +24,20 @@ const doOperation = {
     '/': (x , y) => {return y===0? 'Cannot divide by 0': x/y;}
 }
 
-//---------- Function updates the current operation section when an operator is pressed --------------------------------
-const updateCurrentOperation = (currentOperation) =>{
+//---------- Function updates the input section and history section when an operator is pressed ------------------------
+const updateInputSection = (currentOperation) =>{
     for (let i = 0; i <= 9; i++){
-        previousOperations[i].innerHTML = `${history[i+1]}<br>`;//moving every performed operation one level up
+        listOfPreviousOperations[i].innerHTML = `${history[i+1]}<br>`;//moving every performed operation one level up
     }
-    previousOperations[10].innerHTML = `${currentOperation}<br>`;//setting the input and operator at the end of history
+    listOfPreviousOperations[10].innerHTML = `${currentOperation}<br>`;//setting the final result at the end of history
 }
 
 //---------- Function updates the last element of the history with the finalized operation performed by user -----------
-const updateOperationsHistory = (x, op, y, result) =>{
+const updateListOfPreviousOperations = (x, op, y, result) =>{
     let lastOperation = `${x} ${op} ${y} = ${result}`;//formatting the operation
     history.push(lastOperation);//added to the history array to be copied by operations array
     history.shift()//no longer need the element at the top
-    previousOperations[10].innerHTML = `${lastOperation}<br>`//update the last element
+    listOfPreviousOperations[10].innerHTML = `${lastOperation}<br>`//update the last element
 }
 
 //---------- Function updates the screen -------------------------------------------------------------------------------
@@ -76,13 +76,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 case("/"):
                     updateArithmetic(userInput.innerText, '/');
-                    updateCurrentOperation(userInput.innerText);
+                    updateInputSection(userInput.innerText);
                     userInput.innerText = '';
                     break;
 
                 case ("x"):
                     updateArithmetic(userInput.innerText, 'x')
-                    updateCurrentOperation(userInput.innerText);
+                    updateInputSection(userInput.innerText);
                     userInput.innerText = '';
                     break;
 
@@ -96,20 +96,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     }
 
                     updateArithmetic(userInput.innerText, '-')
-                    updateCurrentOperation(userInput.innerText);
+                    updateInputSection(userInput.innerText);
                     userInput.innerText = '';
                     break;
 
                 case "+":
                     updateArithmetic(userInput.innerText, '+')
-                    updateCurrentOperation(userInput.innerText);
+                    updateInputSection(userInput.innerText);
                     userInput.innerText = '';
                     break;
 
                 case '=':
                     n2 = parseFloat(userInput.innerText);
                     userInput.innerText = doOperation[operation](n1, n2);
-                    updateOperationsHistory(n1, operation, n2, userInput.innerText);
+                    updateListOfPreviousOperations(n1, operation, n2, userInput.innerText);
                     break;
 
                 case '.':
