@@ -10,16 +10,19 @@ const doOperation = {
     '/': (x , y) => {return y===0? 'Cannot divide by 0': x/y;}
 }
 
-const updateCurrentOperation = (currentOperation) => previousOperations[10].innerHTML = `${currentOperation}<br>`;
+const updateCurrentOperation = (currentOperation) =>{
+    for (let i = 0; i <= 9; i++){
+        previousOperations[i].innerHTML = `${history[i+1]}<br>`;
+    }
+    previousOperations[10].innerHTML = `${currentOperation}<br>`;
+}
 
 const updateOperationsHistory = (x, op, y, result) =>{
     let lastOperation = `${x} ${op} ${y} = ${result}`;
     history.push(lastOperation);
     history.shift()
-    for (let i = 0; i <= 9; i++){
-        previousOperations[i].innerHTML = `${history[i+1]}<br>`;
-    }
-    previousOperations[10].innerHTML = '<br>';
+    previousOperations[10].innerHTML = `${lastOperation}<br>`
+
 }
 
 const appendCharacter = (character) =>{
