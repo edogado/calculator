@@ -10,6 +10,8 @@ const doOperation = {
     '/': (x , y) => {return y===0? 'Cannot divide by 0': x/y;}
 }
 
+const updateCurrentOperation = (currentOperation) => previousOperations[10].innerHTML = `${currentOperation}<br>`;
+
 const updateOperationsHistory = (x, op, y, result) =>{
     let lastOperation = `${x} ${op} ${y} = ${result}`;
     history.push(lastOperation);
@@ -18,7 +20,6 @@ const updateOperationsHistory = (x, op, y, result) =>{
         previousOperations[i].innerHTML = `${history[i]}<br>`;
     }
 }
-
 
 const appendCharacter = (character) =>{
     numberSelected.innerText = numberSelected.innerText + character;
