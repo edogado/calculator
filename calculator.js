@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
         button.addEventListener('click', ()=>{
             switch (button.textContent){
                 case("AC"):
+                    if (n1 || operation){
+                        numberSelected.innerText = "";
+                        break;
+                    }
                     numberSelected.innerText = '0';
                     operation = '';
                     n1 = '';
