@@ -54,6 +54,7 @@ body{
     display: flex;
     justify-content: flex-end;
     padding: 4%;
+    height: 44px;
 }
 
 .number{
