@@ -38,7 +38,6 @@ body{
 }
 
 #operations{
-    background-color: cyan;
     display: flex;
     justify-content: flex-end;
     border-top-left-radius: 25px;
@@ -47,12 +46,11 @@ body{
 }
 
 #list-of-operations{
-    background-color: red;
     width: 100%;
 }
 
 #currentOperation{
-    background-color: burlywood;
+    background-color: #C8C8C8;
     display: flex;
     justify-content: flex-end;
     padding: 4%;
