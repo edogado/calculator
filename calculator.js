@@ -13,7 +13,6 @@ const appendCharacter = (character) => userInput.innerText = userInput.innerText
 const updateArithmetic = (integer, operator) =>{
     n1=integer;
     operation = operator;
-    appendCharacter(" " + operator);//update the screen
 }
 
 //---------- Dictionary returns result of an operation depending on the operator ---------------------------------------
@@ -43,6 +42,7 @@ const updateListOfPreviousOperations = (x, op, y, result) =>{
 //---------- Function updates the screen -------------------------------------------------------------------------------
 const updateScreen =(operator) => {
     updateArithmetic(userInput.innerText, operator);
+    appendCharacter(" " + operator);//update the screen
     updateInputSection(userInput.innerText);
     userInput.innerText = '';
 };
