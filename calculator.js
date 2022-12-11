@@ -17,10 +17,10 @@ const updateArithmetic = (integer, operator) =>{
 
 //---------- Dictionary returns result of an operation depending on the operator ---------------------------------------
 const doOperation = {
-    '+': (x , y) => {return parseFloat(x)+y},
-    '-': (x , y) => {return x-y},
-    'x': (x , y) => {return x*y},
-    '/': (x , y) => {return y===0? 'Cannot divide by 0': x/y;}
+    '+': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': parseFloat(x)+y},
+    '-': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': x-y},
+    'x': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': x*y},
+    '/': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': y===0? 'Cannot divide by 0': x/y;}
 }
 
 //---------- Function updates the input section and history section when an operator is pressed ------------------------
@@ -34,6 +34,12 @@ const updateInputSection = (currentOperation) =>{
 //---------- Function updates the last element of the history with the finalized operation performed by user -----------
 const updateListOfPreviousOperations = (x, op, y, result) =>{
     let lastOperation = `${x} ${op} ${y} = ${result}`;//formatting the operation
+    if (isNaN(x)){
+        lastOperation = `_ ${op} ${y} = _`;
+    }
+    if (isNaN(y)){
+        lastOperation = `${x} ${op} _ = _`;
+    }
     history.push(lastOperation);//added to the history array to be copied by operations array
     history.shift()//no longer need the element at the top
     listOfPreviousOperations[10].innerHTML = `${lastOperation}<br>`//update the last element
@@ -78,7 +84,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 case("/"):
                     updateScreen( '/');
-                    break;
+                    break
 
                 case ("x"):
                     updateScreen( 'x');
@@ -103,6 +109,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 case '=':
                     n2 = parseFloat(userInput.innerText);
+                    console.log(isNaN(n2));
                     userInput.innerText = doOperation[operation](n1, n2);
                     updateListOfPreviousOperations(n1, operation, n2, userInput.innerText);
                     operation = '';
