@@ -15,6 +15,10 @@ const updateArithmetic = (integer, operator) =>{
     operation = operator;
 }
 
+//---------- Function will return true if we already have received an operator and disables the operation buttons-------
+const isOperationInProgress = (operation) =>{
+    return operation === '/' || operation === 'x' || operation === '-' || operation === '+';
+}
 //---------- Dictionary returns result of an operation depending on the operator ---------------------------------------
 const doOperation = {
     '+': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': parseFloat(x)+y},
