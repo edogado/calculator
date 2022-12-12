@@ -109,7 +109,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
                 case '=':
                     n2 = parseFloat(userInput.innerText);
-                    console.log(isNaN(n2));
                     userInput.innerText = doOperation[operation](n1, n2);
                     updateListOfPreviousOperations(n1, operation, n2, userInput.innerText);
                     operation = '';
