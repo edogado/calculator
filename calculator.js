@@ -15,7 +15,7 @@ const updateArithmetic = (integer, operator) =>{
     operation = operator;
 }
 
-//---------- Function will return true if we already have received an operator and disables the operation buttons-------
+//---------- Function will return true if we already have received an operator. If so, it disables the operation buttons
 const isOperationInProgress = (operation) =>{
     return operation === '/' || operation === 'x' || operation === '-' || operation === '+';
 }
@@ -87,12 +87,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case("/"):
-                    updateScreen( '/');
+                    if (isOperationInProgress(operation)) break;//we check if we already have a pending operation
+                    updateScreen( '/');//we proceed if there's nothing pending.
                     break
 
                 case ("x"):
-                    updateScreen( 'x');
-                    break;
+                    if (isOperationInProgress(operation)) break;//we check if we already have a pending operation
+                    updateScreen( 'x');//we proceed if there's nothing pending.
+                    break
 
                 case "-":
                     //if user wants to start with a negative number
@@ -104,12 +106,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     }
 
                     //regular subtraction
-                    updateScreen('-');
-                    break;
+                    if (isOperationInProgress(operation)) break;//we check if we already have a pending operation
+                    updateScreen( '-');//we proceed if there's nothing pending.
+                    break
 
                 case "+":
-                    updateScreen('+')
-                    break;
+                    if (isOperationInProgress(operation)) break;//we check if we already have a pending operation
+                    updateScreen( '+');//we proceed if there's nothing pending.
+                    break
 
                 case '=':
                     n2 = parseFloat(userInput.innerText);
