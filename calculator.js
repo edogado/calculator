@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     operation = '';
                     n1 = '';
                     n2 = '';
-                    updateInputSection('')
+                    updateInputSection('')//this triggers the update of the history screen
                     break;
 
                 case ("C"):
