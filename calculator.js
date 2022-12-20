@@ -19,6 +19,7 @@ const updateArithmetic = (integer, operator) =>{
 const isOperationInProgress = (operation) =>{
     return operation === '/' || operation === 'x' || operation === '-' || operation === '+';
 }
+
 //---------- Dictionary returns result of an operation depending on the operator ---------------------------------------
 const doOperation = {
     '+': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': parseFloat(x)+y},
@@ -44,6 +45,7 @@ const updateListOfPreviousOperations = (x, op, y, result) =>{
     if (isNaN(y)){
         lastOperation = `${x} ${op} _ = _`;
     }
+
     history.push(lastOperation);//added to the history array to be copied by operations array
     history.shift()//no longer need the element at the top
     listOfPreviousOperations[10].innerHTML = `${lastOperation}<br>`//update the last element
