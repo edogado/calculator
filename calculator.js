@@ -2,6 +2,7 @@ let history = ['', '', '', '', '', '', '', '', '' , '', ''];
 let listOfPreviousOperations = document.getElementsByClassName('number');
 let userInput = document.getElementById('number-selected');//numbers clicked by user
 const buttons = document.querySelectorAll('#buttons div');
+let deleteButton = document.getElementById('delete');
 let operation;// needed to keep track of what operation we have to perform
 let n1;//placeholder for the first integer
 let n2;//placeholder for the second integer
@@ -65,10 +66,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
         button.addEventListener('click', ()=>{
             switch (button.textContent){
                 case("AC")://reset the calculator
+                    for (let i = 0; i < history.length; i++){
+                        history[i] = '';
+                    }
                     userInput.innerText = '0';
                     operation = '';
                     n1 = '';
                     n2 = '';
+                    updateInputSection('')
+                    break;
+
+                case ("C"):
+                    userInput.innerText = '0';
+                    operation = '';
+                    n1 = '';
+                    n2 = '';
+                    deleteButton.innerText = 'AC'
                     break;
 
                 case("+/-"):
@@ -139,6 +152,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     if (userInput.innerText.length <= 33){
                         appendCharacter(button.textContent);
                     }
+                    deleteButton.innerText = 'C';
             }
         })
     })
