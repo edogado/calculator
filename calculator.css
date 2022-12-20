@@ -59,6 +59,9 @@ body{
 
 .number{
     text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #number-selected{
