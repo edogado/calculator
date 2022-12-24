@@ -60,20 +60,26 @@ const updateScreen =(operator) => {
     userInput.innerText = '';
 };
 
+//---------- Clear Everything ------------------------------------------------------------------------------------------
+const clearEverything = () => {
+    for (let i = 0; i < history.length; i++){
+        history[i] = '';
+    }
+    userInput.innerText = '0';
+    operation = '';
+    n1 = '';
+    n2 = '';
+    updateInputSection('')//this triggers the update of the history screen
+    //last history element is set to empty since its handle separately
+}
+
 document.addEventListener('DOMContentLoaded', ()=> {
 
     buttons.forEach(button => {
         button.addEventListener('click', ()=>{
             switch (button.textContent){
                 case("AC")://reset the calculator
-                    for (let i = 0; i < history.length; i++){
-                        history[i] = '';
-                    }
-                    userInput.innerText = '0';
-                    operation = '';
-                    n1 = '';
-                    n2 = '';
-                    updateInputSection('')//this triggers the update of the history screen
+                    clearEverything()
                     break;
 
                 case ("C"):
