@@ -60,6 +60,15 @@ const updateScreen =(operator) => {
     userInput.innerText = '';
 };
 
+//---------- Clear User Input Screen -----------------------------------------------------------------------------------
+const clearInput =() =>{
+    userInput.innerText = '0';
+    operation = '';
+    n1 = '';
+    n2 = '';
+    deleteButton.innerText = 'AC'
+}
+
 //---------- Clear Everything ------------------------------------------------------------------------------------------
 const clearEverything = () => {
     for (let i = 0; i < history.length; i++){
@@ -83,11 +92,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     break;
 
                 case ("C"):
-                    userInput.innerText = '0';
-                    operation = '';
-                    n1 = '';
-                    n2 = '';
-                    deleteButton.innerText = 'AC'
+                    clearInput()
                     break;
 
                 case("+/-"):
