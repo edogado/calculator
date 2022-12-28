@@ -181,6 +181,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     //whenever a number is pressed, we turned the trigger for the cleaning button
                     deleteButton.innerText = 'C';
             }
-        })
-    })
+        });
+    });
 });
