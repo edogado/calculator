@@ -88,15 +88,19 @@ document.addEventListener('DOMContentLoaded', ()=> {
     buttons.forEach(button => {
         button.addEventListener('click', ()=>{
             switch (button.textContent){
-                case("AC")://reset the calculator
+                //reset the calculator
+                case("AC"):
                     clearEverything()
                     break;
 
+                //resets input screen/section
                 case ("C"):
                     clearInput()
                     break;
 
+                //Converts positive to negative and vice versa
                 case("+/-"):
+
                     //convert positive numbers to negative
                     if (userInput.innerText !== '0' && parseFloat(userInput.innerText) > 0){
                         userInput.innerText = `-${userInput.innerText}`;
@@ -109,20 +113,24 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     }
                     break;
 
+                //converts number to its decimal representation as percentage
                 case("%"):
                     userInput.innerText = `${parseFloat(userInput.innerText)/100}`;
                     break;
 
+                //Division
                 case("/"):
                     if (isOperationInProgress(operation)) break;//we check if we already have a pending operation
                     updateScreen( '/');//we proceed if there's nothing pending.
                     break
 
+                //Multiplication
                 case ("x"):
                     if (isOperationInProgress(operation)) break;//we check if we already have a pending operation
                     updateScreen( 'x');//we proceed if there's nothing pending.
                     break
 
+                //Subtraction
                 case "-":
                     //if user wants to start with a negative number
                     //we check if we only have our initial 0 whose length is 1
@@ -137,19 +145,22 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     updateScreen( '-');//we proceed if there's nothing pending.
                     break
 
+                //Addition
                 case "+":
                     if (isOperationInProgress(operation)) break;//we check if we already have a pending operation
                     updateScreen( '+');//we proceed if there's nothing pending.
                     break
 
+                //Equals
                 case '=':
-                    n2 = parseFloat(userInput.innerText);
-                    userInput.innerText = doOperation[operation](n1, n2);
-                    updateListOfPreviousOperations(n1, operation, n2, userInput.innerText);
-                    operation = '';
-                    n2 = '';
+                    n2 = parseFloat(userInput.innerText);//we get the second integer
+                    userInput.innerText = doOperation[operation](n1, n2);//we get back the result of the operation
+                    updateListOfPreviousOperations(n1, operation, n2, userInput.innerText);//we move previous operations
+                    operation = '';//reset the operation flag
+                    n2 = '';//reset n2 only b/c the result could be used as n1 if operations are continuous
                     break;
 
+                //Decimal Point
                 case '.':
                     if (userInput.innerText.includes('.')){
                         break;
@@ -157,13 +168,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
                     appendCharacter('.');
                     break;
 
+                //Case for number buttons
                 default:
                     if (userInput.innerText.includes('0') && userInput.innerText.length===1){
-                        userInput.innerText = '';
+                        //if there's nothing but the initial 0, we remove it to make space for the actual user's input
+                        userInput.innerText = '';//
                     }
+                    //initial 0 removed, we only allow user to enter input as long as its length is less than the screen's length
                     if (userInput.innerText.length <= 33){
                         appendCharacter(button.textContent);
                     }
+                    //whenever a number is pressed, we turned the trigger for the cleaning button
                     deleteButton.innerText = 'C';
             }
         })
