@@ -12,7 +12,7 @@ const appendCharacter = (character) => userInput.innerText += character;
 
 //---------- Function updates the arithmetic and screen every time an operator is selected -----------------------------
 const updateArithmetic = (integer, operator) =>{
-    n1=integer;
+    n1=parseFloat(integer);
     operation = operator;
 }
 
@@ -23,7 +23,7 @@ const isOperationInProgress = (operation) =>{
 
 //---------- Dictionary returns result of an operation depending on the operator ---------------------------------------
 const doOperation = {
-    '+': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': parseFloat(x)+y},
+    '+': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': x+y},
     '-': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': x-y},
     'x': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': x*y},
     '/': (x , y) => {return isNaN(x) || isNaN(y) ? 'Enter an integer': y===0? 'Cannot divide by 0': x/y;}
