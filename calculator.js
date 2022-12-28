@@ -82,7 +82,7 @@ const clearEverything = () => {
     //last history element is set to empty since its handle separately
 }
 
-//---------- This method handles every thing need for the calculator and call each previous method when needed ---------
+//---------- This method handles every thing needed for the calculator and call each previous method when needed -------
 document.addEventListener('DOMContentLoaded', ()=> {
 
     buttons.forEach(button => {
